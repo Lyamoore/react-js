@@ -1,12 +1,29 @@
-import './App.css';
-import Message from './Message.js';
+import { useState, useCallback, useEffect } from "react";
+import { Form } from "./components/form";
+import { MessageList } from "./components/message-list";
+import "./App.css";
 
-function App(props) {
+const App = () => {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    /// settimeout
+
+    return () => {};
+  }, []);
+
+  const handleNameChange = useCallback((e) => {
+    setName(e.target.value);
+  }, []);
+
   return (
     <div className="App">
-      <Message text="Done :)" />
+      <header className="App-header">
+        <Form name={name} handleNameChange={handleNameChange}/>
+        <MessageList />
+      </header>
     </div>
   );
-}
+};
 
 export default App;
