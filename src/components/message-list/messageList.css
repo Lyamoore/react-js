@@ -2,24 +2,27 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    flex-grow: 1;
+    justify-content: flex-start;
     color:  #ffff;
-    width: 60%;
     padding: 20px;
-    border: 2px rgba(91, 33, 197, 0.986) solid;
+    border-left: 2px rgba(33, 71, 197, 0.986) solid;
+    border-bottom: 2px rgba(33, 71, 197, 0.986) solid;
     box-sizing: border-box;
-    height: 0;
+    height: 75vh;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .message {
-    hyphens: auto;
-    background-color: rgba(211, 208, 252, 0.986);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: rgba(201, 200, 255, 0.986);
     max-width: 60%;
     border-radius: 10px;
     width: fit-content;
     margin: 7px;
-    padding: 5px;
-    color: #ffff;
+    padding: 10px;
+    color: rgb(0, 0, 0);
     box-shadow: 0.4em 0.4em 5px rgba(168, 168, 168, 0.5);
 }

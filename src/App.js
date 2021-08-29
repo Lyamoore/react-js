@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { MessageList } from "./components/message-list";
 import { Form } from "./components/form";
+import { ChatList } from "./components/chat-list";
 import "./App.css";
 
 const App = () => {
@@ -14,36 +15,41 @@ const App = () => {
     ({ author, text }) => {
       let message = {
         id: getId(),
-        author: author,
-        text: text,
+        author,
+        text,
       };
 
       setList([...list, message]);
     },
     [list]
-  );
+  );  
 
-  useEffect(() => {
-    if (list.length) {
-      const lastMesAuthor = list[list.length - 1].author;
-      const timer = setTimeout(
-        () => alert(`${lastMesAuthor}, your message has been sent!`),
-        1500
-      );
+  // useEffect(() => {
+  //   if (list.length) {
+  //     const lastMesAuthor = list[list.length - 1].author;
+      // const timer = setTimeout(
+      //   () => alert(`${lastMesAuthor}, your message has been sent!`),
+      //   1500
+      // );
 
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [list]); 
+      // return () => {
+      //   clearTimeout(timer);
+      // };
+  //   }
+  // }, [list]); 
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1 className="App-title"> Chat </h1>
-      </header>
-      <MessageList list={list} />
-      <Form onSubmit={onSubmit} />
+          <header className="App-header">
+            <h1 className="App-title"> Chatex </h1>
+          </header>
+      <div className="Content">
+        <ChatList list={list} />
+        <div className="Chat">
+          <MessageList list={list} />
+          <Form onSubmit={onSubmit} />
+      </div>
+      </div>
     </div>
   );
 };

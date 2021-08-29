@@ -1,16 +1,23 @@
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import { TextField, Button } from '@material-ui/core';
+import Icons from "../icons";
 import "./form.css";
 
-export const Form = ({ onSubmit }) => {
+export const Form = ({ onSubmit, list }) => {
   const [author, setAuthor] = useState("");
   const [text, setText] = useState("");
 
-  const handleButtonClick = () => {
-    onSubmit({ author, text });
+  const refAutoFocusInp = useRef(null);
 
-    setAuthor("");
-    setText("");
+  const handleButtonClick = () => {
+    if (author.length) {
+      onSubmit({ author, text });
+
+      refAutoFocusInp.current?.focus();
+  
+      setAuthor("");
+      setText("");
+    }
   };
 
   const handleChangeAuthor = (e) => {
@@ -22,12 +29,38 @@ export const Form = ({ onSubmit }) => {
   };
 
   return (
+    
     <div className="Form">
-      <input className="Form-author" type="text" value={author} placeholder="Enter your name" onChange={handleChangeAuthor} />
-      <input className="Form-text" type="text" value={text} placeholder="Write your message" onChange={handleChangeText} />
-      <button className="Form-btn" onClick={handleButtonClick}>
-        Send message
-      </button>
+        <TextField 
+        id="text-field-author" 
+        label="Your name" 
+        className="Form-author" 
+        onChange={handleChangeAuthor} 
+        value={author} 
+        autoFocus 
+        inputRef={refAutoFocusInp}
+        />
+        <TextField 
+        id="text-field-text" 
+        label="Your message" 
+        className="Form-text" 
+        onChange={handleChangeText} 
+        value={text}
+        />
+        <Button 
+        variant="contained" 
+        color="primary" 
+        size="large" 
+        className="Form-btn" 
+        onClick={handleButtonClick}
+        >
+          <Icons 
+          name='message-btn'
+          color='#fff'
+          size='30'
+          className='message-btn'
+          />
+        </Button>
     </div>
   );
 };

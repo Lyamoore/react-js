@@ -1,10 +1,8 @@
 .Form {
-    margin: 30px;
-    flex-grow: 0;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
-    width: 60%;
 }
 
 
@@ -14,7 +12,7 @@
     border: 1px solid grey;
     border-radius: 50px;
     color:  rgba(41, 66, 87, 0.986);
-    width: 15%;
+    width: 20%;
 }
 
 .Form-text {
@@ -30,15 +28,5 @@
 
 .Form-btn {
     outline: none;
-    padding: 20px;
-    border: none;
-    border-radius: 50px;
-    background-color: rgba(91, 33, 197, 0.986);
-    color: #fff;
     width: 15%;
-}
-
-.Form-btn:hover {
-    transition: 200ms;
-    background-color: rgba(136, 87, 226, 0.986);
 }
