@@ -40,9 +40,6 @@ const App = () => {
 
   return (
     <div className="App">
-          <header className="App-header">
-            <h1 className="App-title"> Chatex </h1>
-          </header>
       <div className="Content">
         <ChatList list={list} />
         <div className="Chat">

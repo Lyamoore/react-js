@@ -3,17 +3,6 @@
   padding: 0 10%;
 }
 
-.App-header {
-  opacity: 0.3;
-  display: flex;
-  justify-content: center;
-}
-
-.App-title {
-  flex-grow: 0;
-  color: #000;
-}
-
 .Content {
   display: flex;
   justify-content: flex-start;
