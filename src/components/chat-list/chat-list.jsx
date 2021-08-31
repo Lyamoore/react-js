@@ -11,7 +11,7 @@ export const ChatList = ({ list }) => {
           {list.map((chat) => {
             return (
               <ListItem
-                key={chat.id + 1}
+                key={chat.id}
                 className="chat"
                 button
                 alignItems = "flex-start"

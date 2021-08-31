@@ -1,7 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+
 import { MessageList } from "./components/message-list";
 import { Form } from "./components/form";
 import { ChatList } from "./components/chat-list";
+import { Tabss } from "./components/tabs";
+
 import "./App.css";
 
 const App = () => {
@@ -24,23 +27,10 @@ const App = () => {
     [list]
   );  
 
-  // useEffect(() => {
-  //   if (list.length) {
-  //     const lastMesAuthor = list[list.length - 1].author;
-      // const timer = setTimeout(
-      //   () => alert(`${lastMesAuthor}, your message has been sent!`),
-      //   1500
-      // );
-
-      // return () => {
-      //   clearTimeout(timer);
-      // };
-  //   }
-  // }, [list]); 
-
   return (
     <div className="App">
-      <div className="Content">
+      <Tabss />
+      <div className="Content-сhat">
         <ChatList list={list} />
         <div className="Chat">
           <MessageList list={list} />
