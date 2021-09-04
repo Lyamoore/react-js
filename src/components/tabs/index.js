@@ -1,3 +1,3 @@
-import { Tabs } from "./tabs";
+import { SimpleTabs } from "./tabs";
 
-export { Tabs };
+export { SimpleTabs };

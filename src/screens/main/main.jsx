@@ -1,9 +1,7 @@
 export const Main = () => {
-    return (
-        <div>
-            <h2>
-                В разработке
-            </h2>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h2>Главная в разработке</h2>
+    </div>
+  );
+};

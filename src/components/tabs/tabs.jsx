@@ -1,25 +1,28 @@
-import { AppBar, Tabs as MaterialTabs, Tab } from '@material-ui/core';
+import { AppBar, Tabs, Tab } from "@material-ui/core";
+import { BrowserRouter, Link } from "react-router-dom";
 
-import './tabs.css';
+import { ROUTES } from "../../routing/constants";
+import { Routing } from "../../routing";
 
-export const Tabs = () => {
+import "./tabs.css";
 
-    return (
-        <AppBar 
-        position="static"
-        className="Tabs"
-        >
-            <Tabs>
-                <Tab 
-                label="Main" 
-                />
-                <Tab 
-                label="Chats" 
-                />
-                <Tab 
-                label="Profile" 
-                />
-            </Tabs>
-        </AppBar>
-    )
-}
+export const SimpleTabs = () => {
+  return (
+    <BrowserRouter>
+      <AppBar position="static" className="Tabs">
+        <Tabs>
+          <Link to={ROUTES.MAIN}>
+            <Tab label="Main" />
+          </Link>
+          <Link to={ROUTES.CHATS}>
+            <Tab label="Chats" />
+          </Link>
+          <Link to={ROUTES.PROFILE}>
+            <Tab label="Profile" />
+          </Link>
+        </Tabs>
+        <Routing />
+      </AppBar>
+    </BrowserRouter>
+  );
+};

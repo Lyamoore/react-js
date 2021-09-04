@@ -1,9 +1,9 @@
 .App {
-  min-height: 100vh;
+  height: 100vh;
   padding: 0 10%;
 }
 
-.Content {
+.Content-chat {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;  
