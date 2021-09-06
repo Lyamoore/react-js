@@ -1,12 +1,12 @@
 import "./messageList.css";
 
-export const MessageList = ({ list }) => {
+export const MessageList = ({ messages }) => {
   return (
     <div className="message-list">
-      {list.map((message) => {
+      {messages.map((message) => {
         return (
           <div className="message" key={message.id}>
-            {message.author}: {message.text}
+            <span>{message.text}</span>
           </div>
         );
       })}

@@ -1,0 +1,13 @@
+.Link1 {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.Link1:hover {
+    background-color: rgba(133, 154, 226, 0.178);
+    border-bottom: oldlace 1px solid;
+}
+
+.Tabs {
+    background-color: rgba(33, 71, 197, 0.178);
+}
