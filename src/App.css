@@ -1,5 +1,4 @@
 .App {
-  height: 100vh;
   padding: 0 10%;
 }
 
@@ -8,11 +7,3 @@
   justify-content: flex-start;
   align-items: flex-start;  
 }
-
-.Chat {
-  width: 70%;
-}
-
-/* .App-main {
-  background-color: tomato;
-} */

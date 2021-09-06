@@ -1,21 +1,12 @@
 import "./messageList.css";
-import Icons from "../icons";
-import { App }
 
-export const MessageList = ({ list }) => {
+export const MessageList = ({ messages }) => {
   return (
     <div className="message-list">
-      {list.map((message) => {
+      {messages.map((message) => {
         return (
           <div className="message" key={message.id}>
-            <Icons 
-            name='message-avatar'
-            color='#000'
-            size='20'
-            className='message-avatar'
-            />
-            &nbsp;
-            {message.author}: {message.text}
+            <span>{message.text}</span>
           </div>
         );
       })}

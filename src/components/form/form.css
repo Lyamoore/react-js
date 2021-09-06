@@ -1,32 +1,15 @@
 .Form {
-    margin-top: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
 }
 
-
-.Form-author {
-    outline: none;
-    padding: 20px;
-    border: 1px solid grey;
-    border-radius: 50px;
-    color:  rgba(41, 66, 87, 0.986);
-    width: 20%;
-}
 
 .Form-text {
-    margin-right: 10px;
-    margin-left: 10px;
-    outline: none;
-    padding: 20px;
-    border: 1px solid grey;
-    border-radius: 50px;
-    color:  rgba(41, 66, 87, 0.986);
-    width: 55%;
+    width: 50%;
 }
 
 .Form-btn {
-    outline: none;
     width: 15%;
 }

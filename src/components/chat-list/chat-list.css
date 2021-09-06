@@ -1,11 +1,11 @@
 .chat-list {
-    box-sizing: border-box;
-    height: 75vh;
-    width: 20%;
-    background-color: rgba(33, 71, 197, 0.178);
     overflow-y: auto;
 }
 
-.chat {
-    border-bottom: 1px solid rgba(33, 71, 197, 0.123);
+.Chat {
+    border-bottom: 1px solid rgba(163, 163, 163, 0.459);
+}
+
+.ChatLink {
+    text-decoration: none;
 }

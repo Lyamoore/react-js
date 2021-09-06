@@ -1,27 +1,19 @@
 import { useRef, useState } from "react";
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button } from "@material-ui/core";
 import Icons from "../icons";
 import "./form.css";
 
-export const Form = ({ onSubmit, list }) => {
-  const [author, setAuthor] = useState("");
+export const Form = ({ messages, onSubmit }) => {
   const [text, setText] = useState("");
 
-  const refAutoFocusInp = useRef(null);
+  const inputRef = useRef(null);
 
   const handleButtonClick = () => {
-    if (author.length) {
-      onSubmit({ author, text });
+    onSubmit({ text });
 
-      refAutoFocusInp.current?.focus();
-  
-      setAuthor("");
-      setText("");
-    }
-  };
+    inputRef.current?.focus();
 
-  const handleChangeAuthor = (e) => {
-    setAuthor(e.target.value);
+    setText("");
   };
 
   const handleChangeText = (e) => {
@@ -29,38 +21,27 @@ export const Form = ({ onSubmit, list }) => {
   };
 
   return (
-    
     <div className="Form">
-        <TextField 
-        id="text-field-author" 
-        label="Your name" 
-        className="Form-author" 
-        onChange={handleChangeAuthor} 
-        value={author} 
-        autoFocus 
-        inputRef={refAutoFocusInp}
-        />
-        <TextField 
-        id="text-field-text" 
-        label="Your message" 
-        className="Form-text" 
-        onChange={handleChangeText} 
+      <TextField
+        className="Form-text"
+        id="text-field-text"
+        label="Your message"
         value={text}
-        />
-        <Button 
-        variant="contained" 
-        color="primary" 
-        size="large" 
-        className="Form-btn" 
+        onChange={handleChangeText}
+        inputRef={inputRef}
+      />
+      <Button
+        className="Form-btn"
+        variant="contained"
         onClick={handleButtonClick}
-        >
-          <Icons 
-          name='message-btn'
-          color='#fff'
-          size='30'
-          className='message-btn'
-          />
-        </Button>
+      >
+        <Icons
+          name="message-btn"
+          color="#fff"
+          size="30"
+          className="message-btn"
+        />
+      </Button>
     </div>
   );
 };

@@ -9,15 +9,15 @@ import "./tabs.css";
 export const SimpleTabs = () => {
   return (
     <BrowserRouter>
-      <AppBar position="static" className="Tabs">
-        <Tabs>
-          <Link to={ROUTES.MAIN}>
+      <AppBar position="static">
+        <Tabs className="Tabs">
+          <Link to={ROUTES.MAIN} className="Link1">
             <Tab label="Main" />
           </Link>
-          <Link to={ROUTES.CHATS}>
+          <Link to={ROUTES.CHATS} className="Link1">
             <Tab label="Chats" />
           </Link>
-          <Link to={ROUTES.PROFILE}>
+          <Link to={ROUTES.PROFILE} className="Link1">
             <Tab label="Profile" />
           </Link>
         </Tabs>

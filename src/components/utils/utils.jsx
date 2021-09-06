@@ -1,19 +1,11 @@
-// import { useState } from "react";
+export const GetCounter = () => {
+  let i = 1;
 
-// export const Utils = ({ onSubmit }) => {
-//     const [inputProps, setInputProps] = useState({
-//         error: false,
-//         label: "Your name",
-//         helperText: "",
-//     });
+  return function () {
+    return i++;
+  };
+};
 
-//     const wrongInput = 
-//         setInputProps({
-//             error: true,
-//             helperText: "Incorrect entry.",
-//         })
-
-//     const getId = () => {
-//         return Math.random();
-//     }
-// }
+export const GetId = () => {
+  return Math.random();
+};
