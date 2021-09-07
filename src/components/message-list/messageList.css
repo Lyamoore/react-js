@@ -6,17 +6,15 @@
     color:  #ffff;
     padding: 20px;
     box-sizing: border-box;
-    height: 75vh;
     overflow-y: auto;
     overflow-x: hidden;
-q
 }
 
 .message {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: rgba(33, 71, 197, 0.39);
+    background-color: rgba(33, 71, 197, 0.226);
     max-width: 60%;
     border-radius: 10px;
     width: fit-content;

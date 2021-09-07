@@ -5,16 +5,20 @@
     height: 700px;
 }
 
-.App-right {
-    box-sizing: border-box;
-    width: 80%;
-    height: 700px;
-    background-color: rgb(255, 255, 255);
-}
-
 .App-left {
     box-sizing: border-box;
     width: 20%;
     height: 700px;
     background-color: rgba(255, 255, 255, 0.877);
+}
+
+.App-right {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 80%;
+    height: 700px;
+    background-color: rgb(255, 255, 255);
 }

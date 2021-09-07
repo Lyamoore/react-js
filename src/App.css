@@ -1,9 +1,3 @@
 .App {
   padding: 0 10%;
 }
-
-.Content-chat {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;  
-}

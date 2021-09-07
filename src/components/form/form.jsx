@@ -29,11 +29,16 @@ export const Form = ({ messages, onSubmit }) => {
         value={text}
         onChange={handleChangeText}
         inputRef={inputRef}
+        autoFocus
       />
       <Button
         className="Form-btn"
         variant="contained"
         onClick={handleButtonClick}
+        style={{
+          backgroundColor: "rgba(33, 71, 197, 0.178)",
+          border: "none",
+        }}
       >
         <Icons
           name="message-btn"
