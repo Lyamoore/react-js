@@ -6,6 +6,7 @@
 }
 
 .App-left {
+    overflow-y: auto;
     box-sizing: border-box;
     width: 20%;
     height: 700px;

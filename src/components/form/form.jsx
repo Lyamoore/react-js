@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import { TextField, Button } from "@material-ui/core";
+
 import Icons from "../icons";
+
 import "./form.css";
 
-export const Form = ({ messages, onSubmit }) => {
+export const Form = ({ onSubmit }) => {
   const [text, setText] = useState("");
 
   const inputRef = useRef(null);
@@ -37,7 +39,6 @@ export const Form = ({ messages, onSubmit }) => {
         onClick={handleButtonClick}
         style={{
           backgroundColor: "rgba(33, 71, 197, 0.178)",
-          border: "none",
         }}
       >
         <Icons

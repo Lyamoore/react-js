@@ -1,10 +1,10 @@
 import { useParams, Redirect } from "react-router-dom";
 import { useCallback } from "react";
 
+import { GetId } from "../../components/utils/utils";
 import { ChatList } from "../../components/chat-list";
 import { MessageList } from "../../components/message-list";
 import { Form } from "../../components/form";
-import { GetId } from "../../components/utils/utils";
 import { ROUTES } from "../../routing/constants";
 
 import "./chats.css";
@@ -16,7 +16,7 @@ export const Chats = ({ chats, setChats }) => {
     ({ text }) => {
       const message = {
         id: GetId(),
-        text: text,
+        text,
       };
 
       setChats((prevChats) => {
@@ -26,7 +26,7 @@ export const Chats = ({ chats, setChats }) => {
         return newChats;
       });
     },
-    [chats, setChats]
+    [chats]
   );
 
   if (!chatId || !chats[chatId]) {
@@ -40,7 +40,7 @@ export const Chats = ({ chats, setChats }) => {
       </div>
       <div className="App-right">
         <MessageList messages={chats[chatId].messages} />
-        <Form messages={chats[chatId].messages} onSubmit={onSubmit} />
+        <Form onSubmit={onSubmit} />
       </div>
     </div>
   );

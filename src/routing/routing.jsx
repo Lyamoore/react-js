@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Profile } from "../screens/profile";
 import { Main } from "../screens/main";
 import { Chats } from "../screens/chats";
-import { ROUTES } from "./constants";
 import { NoChat } from "../screens/no-chat";
+import { ROUTES } from "./constants";
 
 export const Routing = () => {
   const [chats, setChats] = useState([]);
