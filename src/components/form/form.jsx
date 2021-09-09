@@ -1,22 +1,26 @@
-import { useRef, useState } from "react";
 import { TextField, Button } from "@material-ui/core";
+import { useCallback, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addMessagesAction } from "../../store/messages/actions";
 
 import Icons from "../icons";
 
 import "./form.css";
 
-export const Form = ({ onSubmit }) => {
+export const Form = ({ chatId }) => {
   const [text, setText] = useState("");
+
+  const dispatch = useDispatch();
 
   const inputRef = useRef(null);
 
-  const handleButtonClick = () => {
-    onSubmit({ text });
+  const handleButtonClick = useCallback(() => {
+    dispatch(addMessagesAction({ chatId, text }));
 
     inputRef.current?.focus();
 
     setText("");
-  };
+  });
 
   const handleChangeText = (e) => {
     setText(e.target.value);
