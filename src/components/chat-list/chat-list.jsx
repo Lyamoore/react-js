@@ -18,14 +18,14 @@ export const ChatList = ({ chatId }) => {
   const dispatch = useDispatch();
 
   const addChat = useCallback(() => {
-    dispatch(addChatAction(), [dispatch]);
-  }, [chats]);
+    dispatch(addChatAction());
+  }, [dispatch]);
 
   const deleteChat = useCallback(
     (id) => {
-      dispatch(deleteChatAction({ id }), [dispatch, id]);
+      dispatch(deleteChatAction({ id }));
     },
-    [chats]
+    [dispatch]
   );
 
   return (

@@ -1,15 +1,8 @@
-// import { put, takeLatest, delay } from 'redux-saga/effects'
+import { takeLatest } from 'redux-saga/effects'
 
-// function* onAddMessageWithSaga(action) {
-//    yield put(addMessage(action));
-//    if (action.message.author !== AUTHORS.BOT) {
-//       const botMessage = 'done';
-//       yield delay(2000);
-//       yield put(addMessage(chatId, botMessage));
-//    };
-// };
+import { ADD_MESSAGE_ACTION } from '../../store/components-store/messages/constants';
+import onAddMessageWithSaga from './messages/saga';
 
-
-// export default function* sagas() { 
-//   yield takeLatest("MESSAGES::ADD_MESSAGE_WITH_SAGA", onAddMessageWithSaga);
-// };
+export default function* sagas() { 
+  yield takeLatest(ADD_MESSAGE_ACTION, onAddMessageWithSaga);
+};
