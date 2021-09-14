@@ -1,14 +1,11 @@
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 
-import { messagesListSelector } from "../../store/messages/selectors";
-import { userNameSelector } from "../../store/profile/selectors";
+import { messageListSelector } from "../../store/components-store/messages/selectors";
 
 import "./messageList.css";
 
 export const MessageList = ({ chatId }) => {
-  const userName = useSelector(userNameSelector);
-
-  const messages = useSelector(messagesListSelector);
+  const messages = useSelector(messageListSelector, shallowEqual);
 
   if (!messages[chatId]) {
     return <div className="message-list"></div>;
@@ -19,9 +16,7 @@ export const MessageList = ({ chatId }) => {
       {messages[chatId].map((message) => {
         return (
           <div className="message" key={message.id}>
-            <span>
-              {userName}: {message.text}
-            </span>
+            <span>{message.text}</span>
           </div>
         );
       })}

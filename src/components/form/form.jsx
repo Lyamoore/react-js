@@ -1,9 +1,9 @@
 import { TextField, Button } from "@material-ui/core";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addMessagesAction } from "../../store/messages/actions";
 
-import Icons from "../icons";
+import { addMessageAction } from "../../store/components-store/messages/actions";
+import Icons from "../utils/icons";
 
 import "./form.css";
 
@@ -15,7 +15,7 @@ export const Form = ({ chatId }) => {
   const inputRef = useRef(null);
 
   const handleButtonClick = useCallback(() => {
-    dispatch(addMessagesAction({ chatId, text }));
+    dispatch(addMessageAction({ chatId, text }));
 
     inputRef.current?.focus();
 

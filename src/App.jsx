@@ -1,7 +1,9 @@
+import { PersistGate } from "redux-persist/integration/react";
+import { CircularProgress } from "@material-ui/core";
 import { Provider } from "react-redux";
 
 import { Tabs } from "./components/tabs";
-import { store } from "./store";
+import { persistor, store } from "./store";
 
 import "./App.css";
 
@@ -9,7 +11,9 @@ const App = () => {
   return (
     <div className="App">
       <Provider store={store}>
-        <Tabs />
+        <PersistGate persistor={persistor} loading={<CircularProgress />}>
+          <Tabs />
+        </PersistGate>
       </Provider>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useParams, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 
-import { chatListSelector } from "../../store/chats/selectors";
+import { chatListSelector } from "../../store/components-store/chats/selectors";
 import { ChatList } from "../../components/chat-list";
 import { MessageList } from "../../components/message-list";
 import { Form } from "../../components/form";
@@ -12,9 +12,11 @@ import "./chats.css";
 export const Chats = () => {
   const { chatId } = useParams();
 
-  const chats = useSelector(chatListSelector);
+  const chats = useSelector(chatListSelector, shallowEqual);
 
-  if (!chatId || !chats[chatId]) {
+  const chat = chats.find((chat) => chat.id === chatId);
+
+  if (!chatId || !chat) {
     return <Redirect to={ROUTES.NO_CHAT} />;
   }
 

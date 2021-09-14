@@ -8,18 +8,16 @@ import { NoChat } from "../screens/no-chat";
 import { ROUTES } from "./constants";
 
 export const Routing = () => {
-  const [chats, setChats] = useState([]);
-
   return (
     <Switch>
       <Route exact path={ROUTES.PROFILE}>
         <Profile />
       </Route>
       <Route path={ROUTES.CHATS}>
-        <Chats chats={chats} setChats={setChats} />
+        <Chats />
       </Route>
       <Route path={ROUTES.NO_CHAT}>
-        <NoChat chats={chats} setChats={setChats} />
+        <NoChat />
       </Route>
       <Route exact path={ROUTES.MAIN}>
         <Main />

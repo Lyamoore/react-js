@@ -1,16 +1,16 @@
 import { Checkbox } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
 
-import { toggleUserNameAction } from "../../store/profile/actions";
+import { toggleUserNameAction } from "../../store/components-store/profile/actions";
 import {
   showUserNameSelector,
   userNameSelector,
-} from "../../store/profile/selectors";
+} from "../../store/components-store/profile/selectors";
 
 export const Profile = () => {
-  const userName = useSelector(userNameSelector);
-  const showUserName = useSelector(showUserNameSelector);
+  const userName = useSelector(userNameSelector, shallowEqual);
+  const showUserName = useSelector(showUserNameSelector, shallowEqual);
 
   const dispatch = useDispatch();
 
