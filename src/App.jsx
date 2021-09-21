@@ -11,7 +11,10 @@ const App = () => {
   return (
     <div className="App">
       <Provider store={store}>
-        <PersistGate persistor={persistor} loading={<CircularProgress />}>
+        <PersistGate
+          persistor={persistor}
+          loading={<CircularProgress className="Loading" />}
+        >
           <Tabs />
         </PersistGate>
       </Provider>

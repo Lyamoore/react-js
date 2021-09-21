@@ -1,32 +1,49 @@
-import { Checkbox } from "@material-ui/core";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { toggleUserNameAction } from "../../store/components-store/profile/actions";
 import {
-  showUserNameSelector,
+  changeNameAction,
+  toggleUserNameAction,
+} from "../../store/profile/actions";
+import {
   userNameSelector,
-} from "../../store/components-store/profile/selectors";
+  showUserNameSelector,
+} from "../../store/profile/selectors";
+import { Profile } from "../../components/profile";
 
-export const Profile = () => {
-  const userName = useSelector(userNameSelector, shallowEqual);
-  const showUserName = useSelector(showUserNameSelector, shallowEqual);
+import "./profile.css";
+
+export const ProfileContainer = () => {
+  const [name, setName] = useState("");
+
+  const userName = useSelector(userNameSelector);
+  const showUserName = useSelector(showUserNameSelector);
 
   const dispatch = useDispatch();
 
-  const handleToggleUserName = useCallback(() => {
-    dispatch(toggleUserNameAction);
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleChangeCheckbox = useCallback(() => {
+    dispatch(toggleUserNameAction());
   }, [dispatch]);
 
+  const handleClick = useCallback(() => {
+    dispatch(changeNameAction({ name }));
+    setName("");
+  }, [dispatch, name]);
+
   return (
-    <div>
-      <Checkbox
-        checked={showUserName}
-        onChange={handleToggleUserName}
-        color="primary"
-        inputProps={{ "aria-label": "secondary checkbox" }}
+    <div className="App-main App-profile">
+      <Profile
+        name={name}
+        showName={showUserName}
+        userName={userName}
+        handleChangeName={handleChangeName}
+        handleChangeCheckbox={handleChangeCheckbox}
+        handleClick={handleClick}
       />
-      {showUserName && <div className="showUserName-box">{userName}</div>}
     </div>
   );
 };

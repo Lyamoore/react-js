@@ -1,6 +1,6 @@
 import { put, delay } from 'redux-saga/effects'
 
-import { addMessageAction } from '../../../store/components-store/messages/actions';
+import { addMessageAction } from './actions';
 
 export default function* onAddMessageWithSaga(action) {
     const botMessage = 'done';

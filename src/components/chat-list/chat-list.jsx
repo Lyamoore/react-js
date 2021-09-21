@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import React, { useCallback } from "react";
 
-import {
-  addChatAction,
-  deleteChatAction,
-} from "../../store/components-store/chats/actions";
-import { chatListSelector } from "../../store/components-store/chats/selectors";
-import Icons from "../utils/icons";
+import { addChatAction, deleteChatAction } from "../../store/chats/actions";
+import { chatListSelector } from "../../store/chats/selectors";
+import Icons from "../icons/Icons";
 
 import "./chat-list.css";
 

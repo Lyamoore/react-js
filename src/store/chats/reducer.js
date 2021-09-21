@@ -1,4 +1,4 @@
-import { getCounter, getId } from "../../../components/utils/utils";
+import { getCounter, getId } from "../../components/utils/utils";
 import { DELETE_CHAT_ACTION, ADD_CHAT_ACTION } from "./constants"
 
 const initialState = {

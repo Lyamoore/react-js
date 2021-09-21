@@ -1,6 +1,6 @@
 import { shallowEqual, useSelector } from "react-redux";
 
-import { messageListSelector } from "../../store/components-store/messages/selectors";
+import { messageListSelector } from "../../store/messages/selectors";
 
 import "./messageList.css";
 

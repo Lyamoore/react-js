@@ -1,4 +1,4 @@
-import { getId } from "../../../components/utils/utils";
+import { getId } from "../../components/utils/utils";
 import { ADD_MESSAGE_ACTION } from "./constants"
 
 const initialState = {

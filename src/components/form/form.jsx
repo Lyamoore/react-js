@@ -2,8 +2,8 @@ import { TextField, Button } from "@material-ui/core";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addMessageAction } from "../../store/components-store/messages/actions";
-import Icons from "../utils/icons";
+import { addMessageAction } from "../../store/messages/actions";
+import Icons from "../icons/Icons";
 
 import "./form.css";
 

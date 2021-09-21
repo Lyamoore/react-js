@@ -1,3 +1,3 @@
-import { Profile } from "./profile";
+import { ProfileContainer } from "./profile";
 
-export { Profile };
+export { ProfileContainer };
