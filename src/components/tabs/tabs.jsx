@@ -20,8 +20,14 @@ export const Tabs = () => {
           <Link to={ROUTES.PROFILE} className="Link1">
             <Tab label="Profile" />
           </Link>
-          <Link to={ROUTES.GISTS} className="Link1">
-            <Tab label="Gists" />
+          <Link to={ROUTES.DOGS} className="Link1">
+            <Tab label="Dogs" />
+          </Link>
+          <Link to={ROUTES.SIGNIN} className="Link1">
+            <Tab label="Sign in" />
+          </Link>
+          <Link to={ROUTES.SIGNUP} className="Link1">
+            <Tab label="Sign up" />
           </Link>
         </MaterialTabs>
         <Routing />

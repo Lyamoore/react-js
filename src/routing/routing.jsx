@@ -1,35 +1,53 @@
-import { Redirect, Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { Redirect, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+import { authenticatedSelector } from "../store/authenticated/selectors";
+import PrivateRoute from "../hocs/privateRoute";
+import PublicRoute from "../hocs/publicRoute";
 import { ProfileContainer } from "../screens/profile";
-import { Main } from "../screens/main";
-import { Chats } from "../screens/chats";
-import { NoChat } from "../screens/no-chat";
-import { Gists } from "../screens/gists";
+import { MainContainer } from "../screens/main";
+import { ChatsContainer } from "../screens/chats";
+import { DogsContainer } from "../screens/dogs";
+import { SignupContainer } from "../screens/signup";
+import { SigninContainer } from "../screens/signin";
+import { NotFound } from "../screens/not-found";
 import { ROUTES } from "./constants";
 
 export const Routing = () => {
+  const authenticated = useSelector(authenticatedSelector);
+
   return (
     <Switch>
-      <Route exact path={ROUTES.PROFILE}>
+      <PublicRoute exact authenticated={authenticated} path={ROUTES.MAIN}>
+        <MainContainer />
+      </PublicRoute>
+
+      <PublicRoute exact authenticated={authenticated} path={ROUTES.SIGNIN}>
+        <SigninContainer />
+      </PublicRoute>
+
+      <PublicRoute exact authenticated={authenticated} path={ROUTES.SIGNUP}>
+        <SignupContainer />
+      </PublicRoute>
+
+      <PrivateRoute exact authenticated={authenticated} path={ROUTES.PROFILE}>
         <ProfileContainer />
-      </Route>
-      <Route path={ROUTES.CHATS}>
-        <Chats />
-      </Route>
-      <Route path={ROUTES.NO_CHAT}>
-        <NoChat />
-      </Route>
-      <Route exact path={ROUTES.GISTS}>
-        <Gists />
-      </Route>
-      <Route exact path={ROUTES.MAIN}>
-        <Main />
-      </Route>
-      <Route path={ROUTES.NOT_FOUND}></Route>
-      <Route>
+      </PrivateRoute>
+
+      <PrivateRoute authenticated={authenticated} path={ROUTES.CHATS}>
+        <ChatsContainer />
+      </PrivateRoute>
+
+      <PrivateRoute exact authenticated={authenticated} path={ROUTES.DOGS}>
+        <DogsContainer />
+      </PrivateRoute>
+
+      <PrivateRoute path={ROUTES.NOT_FOUND} authenticated={authenticated}>
+        <NotFound />
+      </PrivateRoute>
+      <PrivateRoute authenticated={authenticated}>
         <Redirect to={ROUTES.NOT_FOUND} />
-      </Route>
+      </PrivateRoute>
     </Switch>
   );
 };

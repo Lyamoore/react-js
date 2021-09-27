@@ -1,7 +1,7 @@
-export const Main = () => {
+export const MainContainer = () => {
   return (
     <div>
-      <h2>Главная в разработке</h2>
+      <h2>Messanger</h2>
     </div>
   );
 };

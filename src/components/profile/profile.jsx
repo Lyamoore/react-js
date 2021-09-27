@@ -1,36 +1,71 @@
-import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import Button from "@material-ui/core/Button";
+import {
+  FormControlLabel,
+  Checkbox,
+  TextField,
+  Button,
+} from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useEffect } from "react";
 
-export const Profile = ({
-  name,
-  showName,
-  userName,
-  handleChangeName,
-  handleChangeCheckbox,
-  handleClick,
-}) => {
+import { nameSelector, showNameSelector } from "../../store/profile/selectors";
+import { exitFirebaseThunkAction } from "../../store/authenticated/action";
+import { uidSelector } from "../../store/authenticated/selectors";
+import {
+  changeNameWithFirebase,
+  initNameTracking,
+  toggleNameAction,
+} from "../../store/profile/actions";
+
+import "./profile.css";
+
+export const Profile = () => {
+  const dispatch = useDispatch();
+  const name = useSelector(nameSelector);
+  const showName = useSelector(showNameSelector);
+  const uid = useSelector(uidSelector);
+
+  useEffect(() => {
+    dispatch(initNameTracking(uid));
+  }, [dispatch, uid]);
+
+  const handleToggleName = useCallback(() => {
+    dispatch(toggleNameAction());
+  }, [dispatch]);
+
+  const handleExit = useCallback(() => {
+    dispatch(exitFirebaseThunkAction());
+  }, [dispatch]);
+
+  const handleChangeName = (e) => {
+    const changeName = e.target.value;
+    dispatch(changeNameWithFirebase({ changeName, uid }));
+  };
+
   return (
-    <div className="App-wrap">
-      <h3 className="App-title">Profile page</h3>
+    <>
+      <div className="Profile__checkbox">
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={showName}
+              onChange={handleToggleName}
+              color="primary"
+            />
+          }
+          label="Name"
+        />
+        {showName && <h4 className="Profile__name">{name}</h4>}
+      </div>
       <TextField
-        id="outlined-basic"
         label="Name"
+        placeholder="Enter a name"
         variant="outlined"
         onChange={handleChangeName}
-        value={name}
+        style={{ marginBottom: "100px" }}
       />
-      <Button variant="contained" color="primary" onClick={handleClick}>
-        Change and Save Name
+      <Button variant="contained" color="primary" onClick={handleExit}>
+        Exit
       </Button>
-      <Checkbox
-        checked={showName}
-        onChange={handleChangeCheckbox}
-        color="primary"
-        inputProps={{ "aria-label": "secondary checkbox" }}
-      />
-      <span>Show name</span>
-      {showName && <div className="showName-box">{userName}</div>}
-    </div>
+    </>
   );
 };

@@ -1,3 +1,3 @@
-export const userNameSelector = (state) => state.userName;
+export const nameSelector = (state) => state.profile.name;
 
-export const showUserNameSelector = (state) => state.showUserName;
+export const showNameSelector = (state) => state.profile.showName;

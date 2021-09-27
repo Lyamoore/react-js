@@ -1,25 +1,23 @@
-import { TOGGLE_SHOW_USER_NAME_ACTION, CHANGE_NAME_ACTION } from "./constants"
+import { TOGGLE_NAME_ACTION, SET_NAME_ACTION } from "./constants";
 
 const initialState = {
-    userName: 'Artem',
-    showUserName: false,
+  name: "",
+  showName: false,
 };
 
-export const profileReducer = (state=initialState, action) => {
-    switch (action.type) {
-        case TOGGLE_SHOW_USER_NAME_ACTION:
-            return {
-                ...state,
-                showUserName: !state.showUserName
-            };
-
-        case CHANGE_NAME_ACTION:
-            return {
-                ...state,
-                userName: action.payload
-            }
-            
-        default:
-            return state;
-    }
-}
+export const profileReducers = (state = initialState, action) => {
+  switch (action.type) {
+    case TOGGLE_NAME_ACTION:
+      return {
+        ...state,
+        showName: !state.showName,
+      };
+    case SET_NAME_ACTION:
+      return {
+        ...state,
+        name: action.payload,
+      };
+    default:
+      return state;
+  }
+};

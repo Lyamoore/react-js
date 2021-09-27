@@ -1,56 +1,37 @@
-import { TextField, Button } from "@material-ui/core";
-import { useCallback, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { addMessageAction } from "../../store/messages/actions";
-import Icons from "../icons/Icons";
+import { TextField, Button, Icon } from "@material-ui/core";
+import { useEffect, useRef } from "react";
 
 import "./form.css";
 
-export const Form = ({ chatId }) => {
-  const [text, setText] = useState("");
+export const Form = ({ handleClick, handleMessageChange, message, chatId }) => {
+  const ref = useRef();
 
-  const dispatch = useDispatch();
-
-  const inputRef = useRef(null);
-
-  const handleButtonClick = useCallback(() => {
-    dispatch(addMessageAction({ chatId, text }));
-
-    inputRef.current?.focus();
-
-    setText("");
-  });
-
-  const handleChangeText = (e) => {
-    setText(e.target.value);
-  };
+  useEffect(() => {
+    ref?.current?.focus();
+  }, [chatId]);
 
   return (
     <div className="Form">
       <TextField
-        className="Form-text"
-        id="text-field-text"
-        label="Your message"
-        value={text}
-        onChange={handleChangeText}
-        inputRef={inputRef}
-        autoFocus
+        multiline
+        fullWidth
+        maxRows={2}
+        minRows={2}
+        label="Message"
+        placeholder="Enter a message"
+        variant="outlined"
+        inputRef={ref}
+        value={message}
+        onChange={handleMessageChange}
       />
       <Button
-        className="Form-btn"
         variant="contained"
-        onClick={handleButtonClick}
-        style={{
-          backgroundColor: "rgba(33, 71, 197, 0.178)",
-        }}
+        color="primary"
+        style={{ marginLeft: "10px" }}
+        endIcon={<Icon>send</Icon>}
+        onClick={handleClick}
       >
-        <Icons
-          name="message-btn"
-          color="#fff"
-          size="30"
-          className="message-btn"
-        />
+        SEND
       </Button>
     </div>
   );
