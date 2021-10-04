@@ -32,10 +32,6 @@ export const Profile = () => {
     dispatch(toggleNameAction());
   }, [dispatch]);
 
-  const handleExit = useCallback(() => {
-    dispatch(exitFirebaseThunkAction());
-  }, [dispatch]);
-
   const handleChangeName = (e) => {
     const changeName = e.target.value;
     dispatch(changeNameWithFirebase({ changeName, uid }));
@@ -43,29 +39,33 @@ export const Profile = () => {
 
   return (
     <>
-      <div className="Profile__checkbox">
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={showName}
-              onChange={handleToggleName}
-              color="primary"
+      <div className="profile">
+        <div className="profile__top">
+          <TextField
+            label="Name"
+            placeholder="Enter a name"
+            variant="outlined"
+            onChange={handleChangeName}
+            autoFocus
+          />
+          <div className="profile__checkbox">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={showName}
+                  onChange={handleToggleName}
+                  color="primary"
+                />
+              }
+              label="Show your name"
             />
-          }
-          label="Name"
-        />
-        {showName && <h4 className="Profile__name">{name}</h4>}
+          </div>
+          {showName && <h2 className="profile__name">{name}</h2>}
+        </div>
+        <div className="profile__under">
+          <span>Do you want to sign out or change your account?</span>
+        </div>
       </div>
-      <TextField
-        label="Name"
-        placeholder="Enter a name"
-        variant="outlined"
-        onChange={handleChangeName}
-        style={{ marginBottom: "100px" }}
-      />
-      <Button variant="contained" color="primary" onClick={handleExit}>
-        Exit
-      </Button>
     </>
   );
 };

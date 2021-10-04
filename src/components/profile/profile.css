@@ -1,0 +1,38 @@
+.profile {
+    margin-bottom: 180px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 250px;
+}
+
+.profile__top {
+    box-sizing: border-box;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 150px;
+    position: relative;
+}
+
+.profile__under {
+    box-sizing: border-box;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70px;
+    margin-top: 20px;
+}
+
+.profile__btn {
+    width: 125px;
+}
+
+.profile__name {
+    position: absolute;
+    bottom: 0;
+}

@@ -1,3 +1,3 @@
-import { MainContainer } from "./main"; 
+import { Main } from "./main"; 
 
-export { MainContainer };
+export { Main };

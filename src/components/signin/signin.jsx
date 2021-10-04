@@ -1,70 +1,70 @@
-import { TextField, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
-import {
-  emailSelector,
-  errorSelector,
-  passwordSelector,
-} from "../../store/authenticated/selectors";
-import {
-  addEmailAction,
-  addPasswordAction,
-  enterFirebaseThunkAction,
-} from "../../store/authenticated/action";
+import { errorSelector } from "../../store/authenticated/selectors";
+import { signInFirebaseThunkAction } from "../../store/authenticated/action";
 import { ROUTES } from "../../routing/constants";
+import { Input } from "../input";
 
 import "./signin.css";
 
 export const Signin = () => {
   const dispatch = useDispatch();
-  const password = useSelector(passwordSelector);
-  const email = useSelector(emailSelector);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const error = useSelector(errorSelector);
 
   const handleEmailChange = (e) => {
-    dispatch(addEmailAction(e.target.value));
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    dispatch(addPasswordAction(e.target.value));
+    setPassword(e.target.value);
   };
 
-  const handleEnter = useCallback(() => {
-    dispatch(enterFirebaseThunkAction({ email, password }));
+  const handleLogin = useCallback(() => {
+    dispatch(signInFirebaseThunkAction({ email, password }));
+    setEmail("");
+    setPassword("");
   }, [dispatch, email, password]);
 
   return (
-    <div className="Login">
-      <TextField
-        label="Email"
-        placeholder="Enter your email address"
-        variant="outlined"
-        value={email}
-        type="email"
-        onChange={handleEmailChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <TextField
-        label="Password"
-        placeholder="Enter your password"
-        variant="outlined"
-        type="password"
-        value={password}
-        onChange={handlePasswordChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <Button variant="contained" color="primary" onClick={handleEnter}>
-        Enter
-      </Button>
-      <div className="Login__link">
-        <h3 className="Login__title">No account?</h3>
-        <Link to={ROUTES.SIGNUP} className="Login__btn">
-          Signup
-        </Link>
+    <div className="login">
+      <div className="login__top">
+        <Input
+          label={"Email"}
+          placeholder={"Enter your email address"}
+          variant={"outlined"}
+          value={email}
+          type={"email"}
+          onChange={handleEmailChange}
+        />
+        <Input
+          label={"Password"}
+          placeholder={"Enter your password"}
+          variant={"outlined"}
+          type={"password"}
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleLogin}
+          className="login__btn"
+        >
+          Enter
+        </Button>
       </div>
-      {error && <h3 className="Login__error">Error: {error}</h3>}
+      {error && <h3 className="login__error">Error: {error}</h3>}
+      <div className="login__under">
+        <h3 className="login__title">Don't have an account?</h3>
+        <div className="login__link">
+          <Link to={ROUTES.SIGNUP}>Signup</Link>
+        </div>
+      </div>
     </div>
   );
 };

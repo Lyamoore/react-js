@@ -4,8 +4,10 @@ import "./dogs.css";
 
 export const DogsContainer = () => {
   return (
-    <div>
-      <Dogs />
+    <div className="counter">
+      <div className="dogs__screen">
+        <Dogs />
+      </div>
     </div>
   );
 };

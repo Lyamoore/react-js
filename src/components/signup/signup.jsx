@@ -1,71 +1,72 @@
-import { TextField, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
-import {
-  emailSelector,
-  errorSelector,
-  passwordSelector,
-} from "../../store/authenticated/selectors";
-import {
-  addEmailAction,
-  addPasswordAction,
-  submitFirebaseThunkAction,
-} from "../../store/authenticated/action";
+import { errorSelector } from "../../store/authenticated/selectors";
+import { createUserFirebaseThunkAction } from "../../store/authenticated/action";
 import { ROUTES } from "../../routing/constants";
+import { Input } from "../input";
 
 import "./signup.css";
 
 export const Signup = () => {
   const dispatch = useDispatch();
-
-  const password = useSelector(passwordSelector);
-  const email = useSelector(emailSelector);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const error = useSelector(errorSelector);
 
   const handleEmailChange = (e) => {
-    dispatch(addEmailAction(e.target.value));
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    dispatch(addPasswordAction(e.target.value));
+    setPassword(e.target.value);
   };
 
   const handleSubmit = useCallback(() => {
-    dispatch(submitFirebaseThunkAction({ email, password }));
+    dispatch(createUserFirebaseThunkAction({ email, password }));
+    setEmail("");
+    setPassword("");
   }, [dispatch, email, password]);
 
   return (
     <>
-      <TextField
-        label="Email"
-        placeholder="Enter your email address"
-        variant="outlined"
-        value={email}
-        type="email"
-        onChange={handleEmailChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <TextField
-        label="Password"
-        placeholder="Enter your password"
-        variant="outlined"
-        type="password"
-        value={password}
-        onChange={handlePasswordChange}
-        style={{ marginBottom: "20px" }}
-      />
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Submit
-      </Button>
-      <div className="Signup__link">
-        <h3 className="Signup__title">Already registered?</h3>
-        <Link to={ROUTES.LOGIN} className="Signup__btn">
-          Login
-        </Link>
+      <div className="signup">
+        <div className="signup__top">
+          <Input
+            label={"Email"}
+            placeholder={"Enter your email address"}
+            variant={"outlined"}
+            value={email}
+            type={"email"}
+            onChange={handleEmailChange}
+          />
+          <Input
+            label={"Password"}
+            placeholder={"Enter your password"}
+            variant={"outlined"}
+            type={"password"}
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit}
+            className="signup__btn"
+          >
+            Submit
+          </Button>
+        </div>
+        {error && <h3 className="signup__error">Error: {error}</h3>}
+        <div className="signup__under">
+          <h3 className="signup__title">Have an account?</h3>
+          <div className="signup__link">
+            <Link to={ROUTES.LOGIN}>Login</Link>
+          </div>
+        </div>
       </div>
-      {error && <h3 className="Signup__error">Error: {error}</h3>}
     </>
   );
 };

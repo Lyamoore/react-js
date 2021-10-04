@@ -39,14 +39,16 @@ export const Dogs = () => {
   return (
     <>
       <Button
-        className="Dogs__btn"
+        className="dogs__btn"
         variant="contained"
         color="primary"
         onClick={handleData}
       >
         The next dog
       </Button>
-      <img className="Dogs__image" src={dogs.message} alt="dog" />
+      <div className="dogs__block">
+        <img className="dogs__image" src={dogs.message} alt="dog" />
+      </div>
     </>
   );
 };

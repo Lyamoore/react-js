@@ -44,19 +44,11 @@ export const initMessageTracking = () => (dispatch) => {
     .on("child_changed", (snapshot) => {
       const payload = getMessagesPayloadFromSnapshot(snapshot);
       if (payload !== []) dispatch(addMessageAction(payload));
-    });
-
-  firebase
-    .database()
-    .ref("messages")
+    })
     .on("child_added", (snapshot) => {
       const payload = getMessagesPayloadFromSnapshot(snapshot);
       if (payload !== []) dispatch(addMessageAction(payload));
-    });
-
-  firebase
-    .database()
-    .ref("messages")
+    })
     .on("child_removed", (snapshot) => {
       const payload = getMessagesPayloadFromSnapshot(snapshot);
       dispatch(deleteMessageAction(payload));

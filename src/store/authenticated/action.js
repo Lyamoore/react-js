@@ -1,23 +1,11 @@
 import firebase from "firebase";
 
 import {
-  ADD_EMAIL_ACTION,
-  ADD_PASSWORD_ACTION,
   SUBMIT_ERROR_ACTION,
   AUTHED_ACTION,
   NOT_AUTHED_ACTION,
   CURRENT_USER_ACTION,
 } from "./constants";
-
-export const addEmailAction = (payload) => ({
-  type: ADD_EMAIL_ACTION,
-  payload,
-});
-
-export const addPasswordAction = (payload) => ({
-  type: ADD_PASSWORD_ACTION,
-  payload,
-});
 
 export const submitErrorAction = (payload) => ({
   type: SUBMIT_ERROR_ACTION,
@@ -47,7 +35,7 @@ export const authedThunkAction = (payload) => (dispatch) => {
   }
 };
 
-export const submitFirebaseThunkAction = (payload) => async (dispatch) => {
+export const createUserFirebaseThunkAction = (payload) => async (dispatch) => {
   const { email, password } = payload;
   try {
     await firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -56,7 +44,7 @@ export const submitFirebaseThunkAction = (payload) => async (dispatch) => {
   }
 };
 
-export const enterFirebaseThunkAction = (payload) => async (dispatch) => {
+export const signInFirebaseThunkAction = (payload) => async (dispatch) => {
   const { email, password } = payload;
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password);

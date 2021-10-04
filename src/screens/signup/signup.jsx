@@ -4,8 +4,10 @@ import "./signup.css";
 
 export const SignupContainer = () => {
   return (
-    <div>
-      <Signup />
+    <div className="counter">
+      <div className="signup_screen">
+        <Signup />
+      </div>
     </div>
   );
 };

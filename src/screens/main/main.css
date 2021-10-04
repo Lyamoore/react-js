@@ -1,4 +1,10 @@
-.signin_screen {
+.counter {
+    height: 80vh;
+    background-color: rgb(255, 255, 255);
+    color: darkblue;
+}
+
+.main__screen {
     display: flex;
     flex-direction: column;
     height: 100%;

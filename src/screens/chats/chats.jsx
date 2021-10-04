@@ -113,49 +113,51 @@ export const ChatsContainer = () => {
   }
 
   return (
-    <div className="Chats">
-      <Notice mouseOver={mouseOver} notice={notice} />
-      <div>
-        <List
-          subheader={
-            <ListSubheader
-              component="div"
-              color="primary"
-              id="nested-list-subheader"
-            >
-              Сhat list
-            </ListSubheader>
-          }
-        >
-          <ChatList
-            chatId={chatId}
-            chatList={chatList}
-            handeleClickChatDelete={handeleClickChatDelete}
-            setName={setName}
-          />
-        </List>
-        <div className="Chats__add-chat">
-          <AddChatButton
-            handleClickOpen={handleClickOpen}
-            open={open}
-            handleClose={handleClose}
-            chatName={chatName}
-            handleChatNameChange={handleChatNameChange}
-            handleAddChat={handleAddChat}
-          />
+    <div className="counter">
+      <div className="chats__screen">
+        <Notice mouseOver={mouseOver} notice={notice} />
+        <div>
+          <List
+            subheader={
+              <ListSubheader
+                component="div"
+                color="primary"
+                id="nested-list-subheader"
+              >
+                Сhat list
+              </ListSubheader>
+            }
+          >
+            <ChatList
+              chatId={chatId}
+              chatList={chatList}
+              handeleClickChatDelete={handeleClickChatDelete}
+              setName={setName}
+            />
+          </List>
+          <div className="Chats__add-chat">
+            <AddChatButton
+              handleClickOpen={handleClickOpen}
+              open={open}
+              handleClose={handleClose}
+              chatName={chatName}
+              handleChatNameChange={handleChatNameChange}
+              handleAddChat={handleAddChat}
+            />
+          </div>
         </div>
+        {chatId && (
+          <ChatMessages
+            messageList={messageList}
+            chatId={chatId}
+            handleMessageChange={handleMessageChange}
+            handleClick={handleClick}
+            message={message}
+            name={name}
+          />
+        )}
+        {!chatId && <SelectChat />}
       </div>
-      {chatId && (
-        <ChatMessages
-          messageList={messageList}
-          chatId={chatId}
-          handleMessageChange={handleMessageChange}
-          handleClick={handleClick}
-          message={message}
-          name={name}
-        />
-      )}
-      {!chatId && <SelectChat />}
     </div>
   );
 };

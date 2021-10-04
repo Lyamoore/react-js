@@ -1,12 +1,21 @@
-import { AppBar, Tabs as MaterialTabs, Tab } from "@material-ui/core";
+import { AppBar, Tabs as MaterialTabs, Tab, Button } from "@material-ui/core";
 import { BrowserRouter, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 
+import { exitFirebaseThunkAction } from "../../store/authenticated/action";
 import { ROUTES } from "../../routing/constants";
 import { Routing } from "../../routing";
 
 import "./tabs.css";
 
 export const Tabs = () => {
+  const dispatch = useDispatch();
+
+  const handleExit = useCallback(() => {
+    dispatch(exitFirebaseThunkAction());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <AppBar position="static">
@@ -29,6 +38,15 @@ export const Tabs = () => {
           <Link to={ROUTES.SIGNUP} className="Link1">
             <Tab label="Sign up" />
           </Link>
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleExit}
+            className="profile__btn"
+          >
+            Exit
+          </Button>
         </MaterialTabs>
         <Routing />
       </AppBar>

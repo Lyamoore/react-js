@@ -1,10 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
+import { authenticatedSelector } from "../store/authenticated/selectors";
 import { ROUTES } from "../routing/constants";
 
+export default function PrivateRoute({ ...rest }) {
+  const authenticated = useSelector(authenticatedSelector);
 
-export default function PrivateRoute({ authenticated, ...rest }) {
   return authenticated ? (
     <Route {...rest} />
   ) : (

@@ -4,8 +4,10 @@ import "./profile.css";
 
 export const ProfileContainer = () => {
   return (
-    <div>
-      <Profile />
+    <div className="counter">
+      <div className="profile__screen">
+        <Profile />
+      </div>
     </div>
   );
 };
