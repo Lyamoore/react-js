@@ -1,46 +1,37 @@
-import { useRef, useState } from "react";
-import { TextField, Button } from "@material-ui/core";
-import Icons from "../icons";
+import { TextField, Button, Icon } from "@material-ui/core";
+import { useEffect, useRef } from "react";
+
 import "./form.css";
 
-export const Form = ({ messages, onSubmit }) => {
-  const [text, setText] = useState("");
+export const Form = ({ handleClick, handleMessageChange, message, chatId }) => {
+  const ref = useRef();
 
-  const inputRef = useRef(null);
-
-  const handleButtonClick = () => {
-    onSubmit({ text });
-
-    inputRef.current?.focus();
-
-    setText("");
-  };
-
-  const handleChangeText = (e) => {
-    setText(e.target.value);
-  };
+  useEffect(() => {
+    ref?.current?.focus();
+  }, [chatId]);
 
   return (
     <div className="Form">
       <TextField
-        className="Form-text"
-        id="text-field-text"
-        label="Your message"
-        value={text}
-        onChange={handleChangeText}
-        inputRef={inputRef}
+        multiline
+        fullWidth
+        maxRows={2}
+        minRows={2}
+        label="Message"
+        placeholder="Enter a message"
+        variant="outlined"
+        inputRef={ref}
+        value={message}
+        onChange={handleMessageChange}
       />
       <Button
-        className="Form-btn"
         variant="contained"
-        onClick={handleButtonClick}
+        color="primary"
+        style={{ marginLeft: "10px" }}
+        endIcon={<Icon>send</Icon>}
+        onClick={handleClick}
       >
-        <Icons
-          name="message-btn"
-          color="#fff"
-          size="30"
-          className="message-btn"
-        />
+        SEND
       </Button>
     </div>
   );

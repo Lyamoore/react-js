@@ -1,33 +1,49 @@
-import { Redirect, Route, Switch } from "react-router-dom";
-import { useState } from "react";
+import { Redirect, Switch } from "react-router-dom";
 
-import { Profile } from "../screens/profile";
+import PrivateRoute from "../hocs/privateRoute";
+import PublicRoute from "../hocs/publicRoute";
 import { Main } from "../screens/main";
-import { Chats } from "../screens/chats";
+import { SigninContainer } from "../screens/signin";
+import { SignupContainer } from "../screens/signup";
+import { ProfileContainer } from "../screens/profile";
+import { ChatsContainer } from "../screens/chats";
+import { DogsContainer } from "../screens/dogs";
+import { NotFound } from "../screens/not-found";
 import { ROUTES } from "./constants";
-import { NoChat } from "../screens/no-chat";
 
 export const Routing = () => {
-  const [chats, setChats] = useState([]);
-
   return (
     <Switch>
-      <Route exact path={ROUTES.PROFILE}>
-        <Profile />
-      </Route>
-      <Route path={ROUTES.CHATS}>
-        <Chats chats={chats} setChats={setChats} />
-      </Route>
-      <Route path={ROUTES.NO_CHAT}>
-        <NoChat chats={chats} setChats={setChats} />
-      </Route>
-      <Route exact path={ROUTES.MAIN}>
+      <PublicRoute exact path={ROUTES.MAIN}>
         <Main />
-      </Route>
-      <Route path={ROUTES.NOT_FOUND}></Route>
-      <Route>
+      </PublicRoute>
+
+      <PublicRoute exact path={ROUTES.SIGNIN}>
+        <SigninContainer />
+      </PublicRoute>
+
+      <PublicRoute exact path={ROUTES.SIGNUP}>
+        <SignupContainer />
+      </PublicRoute>
+
+      <PrivateRoute path={ROUTES.PROFILE}>
+        <ProfileContainer />
+      </PrivateRoute>
+
+      <PrivateRoute path={ROUTES.CHATS}>
+        <ChatsContainer />
+      </PrivateRoute>
+
+      <PrivateRoute path={ROUTES.DOGS}>
+        <DogsContainer />
+      </PrivateRoute>
+
+      <PrivateRoute path={ROUTES.NOT_FOUND}>
+        <NotFound />
+      </PrivateRoute>
+      <PrivateRoute>
         <Redirect to={ROUTES.NOT_FOUND} />
-      </Route>
+      </PrivateRoute>
     </Switch>
   );
 };

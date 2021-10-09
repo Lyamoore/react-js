@@ -1,44 +1,29 @@
-import { List, ListItem, ListItemText, IconButton } from "@material-ui/core";
+import ClearIcon from "@material-ui/icons/Clear";
+import { ListItem, ListItemText, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import React from "react";
-
-import Icons from "../icons";
 
 import "./chat-list.css";
 
-export const ChatList = ({ chats, chatId, setChats }) => {
-  const deleteChat = (id) => {
-    setChats((prevChats) => {
-      const newChats = { ...prevChats };
-      delete newChats[id];
-      return newChats;
-    });
-  };
-
-  return (
-    <List className="chat-list">
-      {Object.keys(chats).map((id) => {
-        return (
-          <React.Fragment key={id}>
-            <ListItem className="Chat">
-              <Link to={`/chats/${id}`} className="ChatLink">
-                <ListItemText
-                  style={{ color: id === chatId ? "#000" : "#aaa" }}
-                  primary={chats[id].name}
-                />
-              </Link>
-              <IconButton aria-label="delete" onClick={() => deleteChat(id)}>
-                <Icons
-                  name="delete-btn"
-                  color="#000"
-                  size="15"
-                  className="delete-btn"
-                />
-              </IconButton>
+export const ChatList = ({ chatId, chatList, handeleClickChatDelete }) => {
+  if (chatList) {
+    return chatList.map((el) => {
+      return (
+        <div className="ChatList" key={el.id}>
+          <Link className="ChatList__chat" to={`/chats/${el.id}`}>
+            <ListItem divider button>
+              <ListItemText
+                style={{ color: chatId === el.id ? "#11cb5f" : "#1976d2" }}
+                primary={el.chatName}
+              />
             </ListItem>
-          </React.Fragment>
-        );
-      })}
-    </List>
-  );
+          </Link>
+          <IconButton onClick={() => handeleClickChatDelete(el.id)}>
+            <ClearIcon />
+          </IconButton>
+        </div>
+      );
+    });
+  } else {
+    return null;
+  }
 };

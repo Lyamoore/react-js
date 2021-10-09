@@ -1,3 +1,3 @@
-import { Chats } from "./chats"; 
+import { ChatsContainer } from "./chats"; 
 
-export { Chats };
+export { ChatsContainer };

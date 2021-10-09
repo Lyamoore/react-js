@@ -1,7 +1,13 @@
-export const Profile = () => {
+import { Profile } from "../../components/profile";
+
+import "./profile.css";
+
+export const ProfileContainer = () => {
   return (
-    <div>
-      <h2>Профиль разработке</h2>
+    <div className="counter">
+      <div className="profile__screen">
+        <Profile />
+      </div>
     </div>
   );
 };
